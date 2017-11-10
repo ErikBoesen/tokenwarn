@@ -9,14 +9,14 @@ with open('message.md') as f:
 class Bot(discord.Client):
     def __init__(self):
         super().__init__()
-        print('Starting roll...')
+        print('Logging in...', end='')
 
     async def on_ready(self):
         """Run when the bot is ready."""
-        print('Logged in as ' + self.user.name + ' (ID ' + self.user.id + ').')
+        print('connected as %s.' % self.user.name)
         for server in self.servers:
-            #await self.send_message(server.default_channel, '', embed=EMBED)
-            print('Sent message in %s#%s.' % (server.name, server.default_channel.name))
+            await self.send_message(server.default_channel, '', embed=EMBED)
+            print('- Sent message in %s#%s.' % (server.name, server.default_channel.name))
         await self.logout()
         print('Logged out.')
 
