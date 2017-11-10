@@ -9,7 +9,7 @@ with open('message.md') as f:
 class Bot(discord.Client):
     def __init__(self):
         super().__init__()
-        print('Logging in...', end='')
+        print('Logging in... ', end='')
 
     async def on_ready(self):
         """Run when the bot is ready."""
@@ -25,13 +25,7 @@ if __name__ == '__main__':
     with open('tokens.txt') as f:
         tokens = [token for token in f.read().split('\n') if token]
 
-    bots = []
     loop = asyncio.get_event_loop()
     for token in tokens:
-        bots.append(Bot())
-        loop.run_until_complete(bots[-1].start(token))
-    try:
-        loop.run_until_complete()
-    finally:
-        loop.stop()
-        sys.exit(0)
+        bot = Bot()
+        loop.run_until_complete(bot.start(token))
