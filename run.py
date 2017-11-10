@@ -1,8 +1,10 @@
 import discord
 import asyncio
+import sys
 
 with open('message.md') as f:
     EMBED = discord.Embed(title='Warning!', type='rich', description=f.read())
+
 
 class Bot(discord.Client):
     def __init__(self):
@@ -13,16 +15,23 @@ class Bot(discord.Client):
         """Run when the bot is ready."""
         print('Logged in as ' + self.user.name + ' (ID ' + self.user.id + ').')
         for server in self.servers:
-            await self.send_message(server.default_channel, '', embed=EMBED)
+            #await self.send_message(server.default_channel, '', embed=EMBED)
             print('Sent message in %s#%s.' % (server.name, server.default_channel.name))
         await self.logout()
+        print('Logged out.')
 
 
 if __name__ == '__main__':
     with open('tokens.txt') as f:
         tokens = [token for token in f.read().split('\n') if token]
 
+    bots = []
+    loop = asyncio.get_event_loop()
     for token in tokens:
-        bot = Bot()
-        bot.run(token)
-        bot.close()
+        bots.append(Bot())
+        loop.run_until_complete(bots[-1].start(token))
+    try:
+        loop.run_until_complete()
+    finally:
+        loop.stop()
+        sys.exit(0)

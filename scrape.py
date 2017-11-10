@@ -19,5 +19,5 @@ for f in gh.search_code('discord Mz'):
     except:
         print('Error parsing result.')
 
-with open('tokens.txt') as f:
-    f.write('\n'.join(tokens))
+with open('tokens.txt', 'w') as f:
+    f.write('\n'.join(list(set(tokens))))
