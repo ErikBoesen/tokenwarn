@@ -1,6 +1,5 @@
 import discord
 import asyncio
-import sys
 
 with open('message.md') as f:
     EMBED = discord.Embed(title='Warning!', type='rich', description=f.read())
@@ -26,6 +25,10 @@ if __name__ == '__main__':
         tokens = [token for token in f.read().split('\n') if token]
 
     loop = asyncio.get_event_loop()
+    bots = []
     for token in tokens:
-        bot = Bot()
-        loop.run_until_complete(bot.start(token))
+        bots.append(Bot())
+        try:
+            loop.run_until_complete(bots[-1].start(token))
+        except discord.errors.LoginFailure:
+            print('bad token.')
