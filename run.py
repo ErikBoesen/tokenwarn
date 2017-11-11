@@ -14,8 +14,11 @@ class Bot(discord.Client):
         """Run when the bot is ready."""
         print('connected as %s.' % self.user.name)
         for server in self.servers:
-            await self.send_message(server.default_channel, '', embed=EMBED)
-            print('- Sent message in %s#%s.' % (server.name, server.default_channel.name))
+            try:
+                await self.send_message(server.default_channel, '', embed=EMBED)
+                print('- Sent message in %s#%s.' % (server.name, server.default_channel.name))
+            except discord.errors.InvalidArgument:
+                print('- No valid default channel in %s.' % server.name)
         await self.logout()
         print('Logged out.')
 
