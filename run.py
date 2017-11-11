@@ -17,8 +17,8 @@ class Bot(discord.Client):
             try:
                 await self.send_message(server.default_channel, '', embed=EMBED)
                 print('- Sent message in %s#%s.' % (server.name, server.default_channel.name))
-            except discord.errors.InvalidArgument:
-                print('- No valid default channel in %s.' % server.name)
+            except:
+                print('- Couldn\'t send message in %s.' % server.name)
         await self.logout()
         print('Logged out.')
 
