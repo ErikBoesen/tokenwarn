@@ -1,7 +1,7 @@
 aiohttp==1.0.5
 async-timeout==2.0.0
 chardet==3.0.4
-discord.py==0.16.12
+git+https://github.com/Rapptz/discord.py@rewrite#egg=discord.py
 multidict==3.3.2
 PyGithub==1.35
 PyJWT==1.5.3
