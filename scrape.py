@@ -51,7 +51,7 @@ def main():
     tokens = set()
     f = open('tokens.txt', 'w')
 
-    scrape(get_gh())
+    scrape()
 
     f.close()
 
