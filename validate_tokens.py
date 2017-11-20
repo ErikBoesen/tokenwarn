@@ -49,6 +49,8 @@ class InvalidResponseError(Exception):
 def main():
     for token in valid_tokens():
         print(token)
+        sys.stdout.flush()
+    SESSION.close()
 
 
 if __name__ == '__main__':
