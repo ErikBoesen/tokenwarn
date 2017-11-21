@@ -1,0 +1,6 @@
+gh_username:
+gh_password:
+# if you have 2 Factor Authentication enabled on your GitHub account,
+# get a token from https://github.com/settings/tokens
+# and the bot will use that instead of a username and password
+gh_token:
