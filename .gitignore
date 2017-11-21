@@ -1,5 +1,6 @@
 *.yaml
 *.yml
+!*example.yml
 tokens.txt
 valid_tokens.txt
 
